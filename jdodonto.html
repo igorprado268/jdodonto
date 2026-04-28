@@ -1,0 +1,752 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
+  <title>JD Odonto</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <link rel="stylesheet" href="header.css">
+  <link rel="stylesheet" href="css/base.css">
+<link rel="stylesheet" href="css/components.css">
+<link rel="stylesheet" href="css/hero.css">
+<link rel="stylesheet" href="css/sections.css">
+<link rel="stylesheet" href="css/animations.css">
+<link rel="stylesheet" href="css/responsive.css">
+<link rel="stylesheet" href="css/footer.css">
+  <!-- Swiper JS (depoimentos e antes/depois slider adicional) -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1A2C3E;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* Gradiente e background geral */
+    .bg-gradient-light {
+      background: linear-gradient(135deg, #f0f9ff 0%, #e6f4f1 100%);
+    }
+
+    /* container padrão */
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 32px;
+    }
+
+    /* glassmorphism e cards */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      border-radius: 32px;
+      border: 1px solid rgba(255, 255, 255, 0.4);
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.08);
+      transition: all 0.3s ease;
+    }
+
+    /* botões */
+    .btn-primary {
+      display: inline-block;
+      background: #0B4F6C;
+      color: white;
+      font-weight: 700;
+      padding: 16px 38px;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: all 0.3s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      box-shadow: 0 8px 20px rgba(11, 79, 108, 0.25);
+      border: none;
+      cursor: pointer;
+      font-size: 1.1rem;
+      letter-spacing: -0.2px;
+    }
+
+    .btn-primary:hover {
+      background: #0C6E8C;
+      transform: translateY(-3px);
+      box-shadow: 0 18px 28px -8px rgba(11, 79, 108, 0.4);
+    }
+
+    .btn-secondary {
+      background: #ffffff;
+      color: #0B4F6C;
+      border: 1px solid rgba(11, 79, 108, 0.3);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.02);
+    }
+    .btn-secondary:hover {
+      background: #f4fbfe;
+      border-color: #0B4F6C;
+    }
+
+    /* Hero com novo tratamento visual */
+    .hero {
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at 80% 20%, rgba(12, 110, 140, 0.08), rgba(2, 48, 71, 0.02)), 
+                  linear-gradient(125deg, #EFFAFE 0%, #D9F0F5 100%);
+      padding-bottom: 80px;
+    }
+
+    .glow-bg-hero {
+      position: absolute;
+      width: 600px;
+      height: 600px;
+      background: radial-gradient(circle, rgba(11, 79, 108, 0.2) 0%, rgba(11, 79, 108, 0) 70%);
+      border-radius: 50%;
+      top: 15%;
+      right: 5%;
+      z-index: 0;
+      filter: blur(60px);
+      animation: floatGlow 9s infinite alternate;
+    }
+
+    @keyframes floatGlow {
+      0% { transform: translate(0, 0) scale(1); opacity: 0.4;}
+      100% { transform: translate(-30px, -20px) scale(1.2); opacity: 0.7;}
+    }
+
+    .hero-wave {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+    }
+
+    /* tags flutuantes */
+    .floating-tag {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(255,255,240,0.85);
+      backdrop-filter: blur(8px);
+      padding: 8px 20px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.9rem;
+      color: #0B4F6C;
+      box-shadow: 0 8px 18px rgba(0,0,0,0.05);
+      border: 1px solid rgba(255,255,255,0.6);
+      transition: transform 0.2s;
+    }
+    .floating-tag i {
+      font-size: 1.1rem;
+    }
+    .tag-1 { animation: floatTag 4s infinite ease-in-out; }
+    .tag-2 { animation: floatTag 5s infinite ease-in-out 0.5s; }
+    .tag-3 { animation: floatTag 4.5s infinite ease-in-out 1s; }
+
+    @keyframes floatTag {
+      0% { transform: translateY(0px);}
+      50% { transform: translateY(-8px);}
+      100% { transform: translateY(0px);}
+    }
+
+    /* Cards serviço */
+    .service-card {
+      background: white;
+      border-radius: 28px;
+      padding: 28px 20px;
+      text-align: center;
+      transition: all 0.3s ease;
+      box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.05);
+      border: 1px solid rgba(0,0,0,0.03);
+    }
+    .service-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 30px 40px -18px rgba(11, 79, 108, 0.2);
+      border-color: rgba(11,79,108,0.15);
+    }
+    .service-icon {
+      font-size: 2.8rem;
+      color: #0B4F6C;
+      margin-bottom: 20px;
+    }
+
+    /* antes e depois slider interativo */
+    .compare-slider {
+      position: relative;
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+      border-radius: 28px;
+      overflow: hidden;
+      box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);
+    }
+    .compare-img {
+      display: block;
+      width: 100%;
+      height: auto;
+    }
+    .compare-overlay {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 50%;
+      height: 100%;
+      overflow: hidden;
+      border-right: 3px solid white;
+    }
+    .compare-overlay img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: left;
+    }
+    .slider-handle {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      width: 42px;
+      height: 42px;
+      background: white;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      box-shadow: 0 4px 12px rgba(0,0,0,0.25);
+      z-index: 10;
+      font-weight: bold;
+      color: #0B4F6C;
+    }
+
+    /* depoimentos swiper */
+    .testimonial-card {
+      background: white;
+      border-radius: 28px;
+      padding: 30px;
+      margin: 15px;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.08);
+      transition: all 0.2s;
+    }
+    .testimonial-card p {
+      font-size: 1rem;
+      line-height: 1.5;
+      color: #2c3e44;
+    }
+
+    /* Animações scroll */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s cubic-bezier(0.2, 0.9, 0.4, 1.1), transform 0.7s ease;
+    }
+    .fade-up.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    /* Imagem Dentista profissional com postura e animação */
+    .doctor-image-wrapper {
+      position: relative;
+      animation: slideInRight 0.9s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      transform-origin: center;
+      will-change: transform;
+    }
+    
+    @keyframes slideInRight {
+      0% {
+        opacity: 0;
+        transform: translateX(60px);
+      }
+      100% {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+    
+    /* movimento flutuante muito sutil */
+    .floating-doctor {
+      animation: gentleFloat 5s ease-in-out infinite;
+    }
+    
+    @keyframes gentleFloat {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
+    }
+    
+    .trust-badge {
+      position: absolute;
+      bottom: 20px;
+      left: -20px;
+      background: rgba(255,255,255,0.96);
+      backdrop-filter: blur(12px);
+      border-radius: 60px;
+      padding: 12px 20px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 20px 35px -12px rgba(0, 0, 0, 0.2);
+      border: 1px solid rgba(255,255,255,0.5);
+      z-index: 15;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: #0B4F6C;
+      animation: fadeInUp 0.8s 0.3s both;
+    }
+    
+    @keyframes fadeInUp {
+      from {
+        opacity: 0;
+        transform: translateY(20px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+    
+    .trust-badge i {
+      font-size: 1.6rem;
+      color: #F9A826;
+    }
+    
+    /* Imagem com profundidade e blur de fundo interno */
+    .doctor-premium-img {
+      width: 100%;
+      height: auto;
+      display: block;
+      border-radius: 32px;
+      box-shadow: 0 35px 55px -20px rgba(0,0,0,0.25);
+      transition: transform 0.4s ease;
+    }
+    
+    .doctor-image-wrapper:hover .doctor-premium-img {
+      transform: scale(1.01);
+    }
+    
+    /* Responsivo */
+    @media (max-width: 992px) {
+      .hero-grid {
+        flex-direction: column;
+        text-align: center;
+      }
+      .floating-tags {
+        justify-content: center;
+      }
+      .glow-bg-hero { width: 300px; height: 300px; }
+      .trust-badge {
+        left: 5%;
+        bottom: 10px;
+        padding: 8px 16px;
+        font-size: 0.8rem;
+      }
+      .doctor-image-wrapper {
+        margin-top: 30px;
+        max-width: 85%;
+        margin-left: auto;
+        margin-right: auto;
+      }
+    }
+    
+    footer {
+      background: #0A2E3F;
+      color: #cddfe6;
+    }
+  </style>
+</head>
+<body>
+
+<header class="site-header" id="topo">
+  <div class="container header-inner">
+    <a class="brand" href="#topo" aria-label="JD Odonto - Página inicial">
+      <div class="brand-icon">
+        <i class="fas fa-tooth"></i>
+      </div>
+      <div class="brand-text">
+        <span class="brand-name">JD <span style="font-weight: 300;">Odonto</span></span>
+        <span class="brand-tagline">Sorriso com excelência</span>
+      </div>
+    </a>
+
+    <button class="menu-toggle" type="button" aria-expanded="false" aria-controls="site-menu" aria-label="Abrir menu">
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+      <span class="hamburger-line"></span>
+    </button>
+
+    <nav class="site-nav" id="site-menu" aria-label="Navegação principal">
+      <div class="nav-links">
+        <a href="#sobre" class="nav-link">
+          <i class="fas fa-user-md"></i>
+          <span>Sobre</span>
+        </a>
+        <a href="#doutor" class="nav-link">
+          <i class="fas fa-star"></i>
+          <span>Especialista</span>
+        </a>
+        <a href="#depoiment" class="nav-link">
+          <i class="fas fa-heart"></i>
+          <span>Depoimentos</span>
+        </a>
+        <a href="#agendamento" class="nav-link">
+          <i class="fas fa-envelope"></i>
+          <span>Contato</span>
+        </a>
+      </div>
+      <div class="nav-actions">
+        <a href="tel:+553535531251" class="nav-phone" aria-label="Telefone">
+          <i class="fas fa-phone-alt"></i>
+          <span>(35) 3553-1251</span>
+        </a>
+        <a href="https://wa.me/3535531251" class="nav-cta" target="_blank" rel="noopener noreferrer">
+          <i class="fab fa-whatsapp"></i>
+          <span>Agende Hoje</span>
+        </a>
+      </div>
+    </nav>
+  </div>
+  
+  <!-- Indicador de scroll -->
+  <div class="scroll-indicator"></div>
+</header>
+
+<!-- HERO SECTION - REFORMULADA COM IMAGEM DE ALTA AUTORIDADE -->
+<section class="hero" style="position:relative; padding: 50px 0 80px 0;">
+  <div class="glow-bg-hero"></div>
+  <div class="container">
+    <div class="hero-grid" style="display: flex; align-items: center; gap: 50px; flex-wrap: wrap; position: relative; z-index: 2;">
+      <!-- Lado esquerdo: texto forte -->
+      <div class="hero-left" style="flex: 1.2;">
+        <div style="margin-bottom: 24px;">
+          <span style="background: rgba(11,79,108,0.1); padding: 6px 16px; border-radius: 40px; font-size: 0.8rem; font-weight: 600; color: #0B4F6C;">✨ Excelência em odontologia estética</span>
+        </div>
+        <h1 style="font-size: 3.5rem; font-weight: 800; line-height: 1.2; letter-spacing: -1px; color: #153e4f;">Conquiste o sorriso que você <span style="color:#0C6E8C;">sempre sonhou</span></h1>
+        <p style="font-size: 1.2rem; margin: 28px 0 32px; color: #2a4b5c; max-width: 90%;">Atendimento odontológico moderno, seguro e com resultados naturais. Tecnologia de ponta e equipe humanizada.</p>
+        <a href="#agendamento" class="btn-primary" style="margin-right: 16px;">Agendar Avaliação <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
+        
+        <!-- Tags flutuantes especialidades -->
+        <div class="floating-tags" style="display: flex; gap: 15px; margin-top: 48px; flex-wrap: wrap;">
+          <div class="floating-tag tag-1"><i class="fas fa-tooth"></i> Implantes Dentários</div>
+          <div class="floating-tag tag-2"><i class="fas fa-smile"></i> Ortodontia</div>
+          <div class="floating-tag tag-3"><i class="fas fa-star-of-life"></i> Estética Dental</div>
+        </div>
+      </div>
+      
+      <!-- Lado direito: imagem do dentista com postura confiante, jaleco impecável, fundo com blur (efeito profissional) -->
+      <div style="flex: 1; position: relative; display: flex; justify-content: center; align-items: center;">
+        <div class="doctor-image-wrapper floating-doctor" style="position: relative; max-width: 480px; width: 100%; margin: 0 auto;">
+          <!-- Imagem premium de dentista em pé, jaleco, braços cruzados (postura de liderança) -->
+          <img class="doctor-premium-img" 
+               src="https://images.pexels.com/photos/3845127/pexels-photo-3845127.jpeg?auto=compress&cs=tinysrgb&w=800&h=1000&fit=crop" 
+               alt="Dra. Sofia Mendes - Especialista em Estética Dental"
+               style="border-radius: 36px; object-fit: cover; width:100%; height: auto; box-shadow: 0 35px 50px -18px rgba(0,0,0,0.3);">
+          
+          <!-- Efeito glow atrás da imagem (profundidade) -->
+          <div style="position: absolute; width: 100%; height: 100%; background: radial-gradient(circle, rgba(12,110,140,0.25) 0%, rgba(0,0,0,0) 70%); top: 10%; left: 10%; z-index: -1; border-radius: 60%; filter: blur(40px);"></div>
+          
+          <!-- Selo de confiança extra (+2.500 pacientes) -->
+          <div class="trust-badge">
+            <i class="fas fa-star-of-life"></i>
+            <span style="font-weight:800;">⭐ +2.500 pacientes atendidos</span>
+            <i class="fas fa-check-circle" style="color:#0B4F6C;"></i>
+          </div>
+          
+          <!-- Segundo selo opcional "Referência em estética dental" flutuante (posicionado no canto direito) -->
+          <div class="trust-badge" style="left: auto; right: -15px; bottom: 70px; background: rgba(255,255,255,0.98); gap: 8px; padding: 8px 18px;">
+            <i class="fas fa-trophy" style="color:#f5b042;"></i>
+            <span style="font-weight: 600;">🏆 Referência em estética dental</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <svg class="hero-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path fill="#ffffff" fill-opacity="1" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
+  </svg>
+</section>
+
+<!-- PROVA DE AUTORIDADE -->
+<div class="container" style="margin-top: -30px; position: relative; z-index: 5;">
+  <div class="glass-card" style="display: flex; justify-content: space-around; flex-wrap: wrap; padding: 32px 16px; text-align: center; gap: 20px;">
+    <div><span style="font-size: 2rem; font-weight: 800; color:#0B4F6C;">+2.500</span><br>Pacientes atendidos</div>
+    <div><span style="font-size: 2rem; font-weight: 800; color:#0B4F6C;">12+</span><br>Anos de experiência</div>
+    <div><span style="font-size: 2rem; font-weight: 800; color:#0B4F6C;">98%</span><br>Avaliações positivas</div>
+    <div><i class="fas fa-star" style="color:#FFB74D;"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><br> +150 avaliações 5 estrelas</div>
+  </div>
+</div>
+
+<!-- SERVIÇOS (cards com ícones e animação) -->
+<section class="container" style="padding: 90px 32px;">
+  <div class="fade-up" style="text-align: center; margin-bottom: 56px;">
+    <h2 style="font-size: 2.4rem; font-weight: 700;">Tecnologia e <span style="color:#0B4F6C;">cuidado personalizado</span></h2>
+    <p style="color:#496f7e; max-width: 600px; margin: 16px auto 0;">Tratamentos de alta performance com resultados naturais e duradouros</p>
+  </div>
+  <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 32px;">
+    <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-microscope"></i></div><h3>Implantes</h3><p>Fixos e estáveis, recupere função e estética.</p></div>
+    <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-sparkles"></i></div><h3>Clareamento</h3><p>Até 8 tons mais claros em uma única sessão.</p></div>
+    <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-braces"></i></div><h3>Aparelhos</h3><p>Ortodontia invisível e autoligado.</p></div>
+    <div class="service-card fade-up"><div class="service-icon"><i class="fas fa-gem"></i></div><h3>Lentes de contato dental</h3><p>Harmonia e brilho instantâneos.</p></div>
+  </div>
+</section>
+
+<!-- ANTES E DEPOIS (slider interativo altamente conversivo) -->
+<section style="background: #F4FBFD; padding: 80px 0;">
+  <div class="container">
+    <div class="fade-up" style="text-align: center; margin-bottom: 48px;">
+      <h2 style="font-size: 2.2rem;">Resultados que <span style="color:#0B4F6C;">impressionam</span></h2>
+      <p>Casos reais do nosso consultório</p>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 40px; align-items: center; justify-content: center;">
+      <div class="compare-slider" id="compareSlider" style="max-width: 500px;">
+        <img class="compare-img" src="https://images.pexels.com/photos/3779707/pexels-photo-3779707.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="antes" id="imgBeforeBase">
+        <div class="compare-overlay" id="overlaySlider" style="width: 50%;">
+          <img src="https://images.pexels.com/photos/3845937/pexels-photo-3845937.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" alt="depois" style="width:100%; height:100%; object-fit:cover;" id="imgAfterBase">
+        </div>
+        <div class="slider-handle" id="sliderHandle"><i class="fas fa-arrows-alt-h"></i></div>
+      </div>
+      <div style="max-width: 380px;">
+        <h3 style="font-size: 1.8rem;">Antes & Depois</h3>
+        <p style="margin: 16px 0;">Arraste o controle para conferir a transformação impressionante com lentes de contato dental e clareamento. 98% de satisfação.</p>
+        <i class="fas fa-chart-line" style="color:#0B4F6C;"></i> <strong> +95% dos pacientes recomendam </strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- SOBRE O DENTISTA (reforço da autoridade) -->
+<section style="background: #F9FCFE; padding: 70px 0;">
+  <div class="container" style="display: flex; flex-wrap: wrap; align-items: center; gap: 50px;">
+    <div style="flex: 1; text-align: center;">
+      <img src="https://images.pexels.com/photos/3845127/pexels-photo-3845127.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop" style="width: 280px; height: 280px; border-radius: 40px; object-fit: cover; box-shadow: 0 30px 35px -14px rgba(0,0,0,0.15);" alt="Dra. Sofia Mendes">
+      <h3 style="margin-top: 20px;">Dra. Sofia Mendes</h3>
+      <p>CRO-SP 28456 | Especialista em Harmonização Orofacial</p>
+    </div>
+    <div style="flex: 2;">
+      <h2>Excelência técnica e <span style="color:#0B4F6C;">empatia</span></h2>
+      <p style="margin-top: 20px; line-height: 1.6;">Mestre em Dentística Restauradora pela USP, especialista em harmonização orofacial e implantes. Mais de 12 anos transformando sorrisos com tecnologia digital de ponta (CAD/CAM, planejamento 3D). Acredito que um sorriso saudável impacta diretamente na confiança e qualidade de vida. Cada paciente recebe um plano exclusivo, minimamente invasivo e com resultados previsíveis. <strong>+2.500 pacientes confiam na minha experiência</strong> para devolver o brilho no olhar.</p>
+      <div style="display: flex; gap: 25px; margin-top: 30px;"><i class="fas fa-certificate" style="color:#0B4F6C;"></i> Especialista em Lentes de Contato <br><i class="fas fa-microscope"></i> Invisalign Diamond Provider</div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS (cards emocionais, carrossel/swiper) -->
+<section id="depoiment" class="container" style="padding: 90px 32px;">
+  <div class="fade-up" style="text-align: center;">
+    <h2>O que nossos pacientes <span style="color:#0B4F6C;">dizem</span></h2>
+    <p style="margin-bottom: 48px;">Histórias reais de confiança e renovação</p>
+  </div>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide"><div class="testimonial-card"><i class="fas fa-quote-left" style="color:#0B4F6C; opacity:0.5; font-size:1.8rem;"></i><p>"Minha autoestima voltou depois do tratamento ortodôntico e clareamento. Atendimento impecável! A imagem de autoridade da doutora me passou segurança imensa."</p><div style="display:flex; align-items:center; margin-top:20px;"><img src="https://randomuser.me/api/portraits/women/33.jpg" style="width:48px; height:48px; border-radius:50%; object-fit:cover; margin-right:12px;"><div><strong>Camila L.</strong><br><i class="fas fa-star" style="color:gold;"></i> 5 estrelas</div></div></div></div>
+      <div class="swiper-slide"><div class="testimonial-card"><i class="fas fa-quote-left" style="color:#0B4F6C; opacity:0.5; font-size:1.8rem;"></i><p>"Fiz implantes e lentes de contato, ninguém acredita que não são meus dentes naturais. Doutora sensacional, profissionalismo e resultado surreal."</p><div style="display:flex; margin-top:20px;"><img src="https://randomuser.me/api/portraits/men/45.jpg" style="width:48px;height:48px;border-radius:50%; margin-right:12px;"><div><strong>Rafael M.</strong><br><span>⭐⭐⭐⭐⭐</span></div></div></div></div>
+      <div class="swiper-slide"><div class="testimonial-card"><i class="fas fa-quote-left" style="color:#0B4F6C;"></i><p>"Dra. Sofia é referência em estética dental. Fiquei impressionado com a tecnologia e o cuidado em cada etapa."</p><div style="display:flex; margin-top:20px;"><img src="https://randomuser.me/api/portraits/women/52.jpg" style="width:48px;border-radius:50%;"><div style="margin-left:12px;"><strong>Juliana R.</strong><br><i class="fas fa-thumbs-up"></i> Recomendo</div></div></div></div>
+    </div>
+    <div class="swiper-pagination" style="margin-top:20px; position:relative;"></div>
+  </div>
+</section>
+
+
+<!-- Contato -->
+<section id="agendamento" style="padding: 80px 20px; background: linear-gradient(115deg, #0B4F6C 0%, #127c9c 100%); color: white; text-align: center; border-radius: 48px 48px 0 0; margin-top: 30px;">
+  <div class="container fade-up">
+    <h2 style="font-size: 2.6rem; max-width: 800px; margin: 0 auto;">Agende sua avaliação e transforme seu sorriso hoje</h2>
+    <p style="margin: 24px auto; font-size: 1.2rem; opacity: 0.9;">Consulta inicial com planejamento digital e diagnóstico completo.</p>
+    <a href="#" class="btn-primary" style="background: white; color:#0B4F6C; box-shadow: 0 12px 20px rgba(0,0,0,0.2); margin-top: 16px; font-size: 1.3rem;">Quero meu sorriso dos sonhos →</a>
+    <p style="margin-top: 30px;"><i class="fas fa-phone-alt"></i> (35) 3553-1251 | jdodonto@gmail.com</p>
+    <p style="margin-top: 30px;"><i class="fas fa-phone-alt"></i> <b>Endereço:</b>
+R. José Senedese, 400 - Jardim Santo Antonio II, Juruaia - MG, 37805-000</p>
+    <p style="margin-top: 30px;"><i class="fas fa-phone-alt"></i><b>Horário de funcionamento</b>
+Seg a Sex: 08h às 18h | Sáb: 08h às 12h</p>
+  </div>
+</section>
+
+<footer style="padding: 30px 0; text-align: center;">
+  <p>© 2026 JD Odonto – Cuidado que transforma vidas.</p>
+  <p>Desenvolvido por M.I. dev</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  // Animação on scroll (fade-up)
+  const faders = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => {
+      if(entry.isIntersecting){
+        entry.target.classList.add('appear');
+        observer.unobserve(entry.target);
+      }
+    });
+  }, { threshold: 0.1 });
+  faders.forEach(el => observer.observe(el));
+  
+  // antes e depois slider interativo
+  const slider = document.getElementById('compareSlider');
+  const overlayDiv = document.getElementById('overlaySlider');
+  const handle = document.getElementById('sliderHandle');
+  if(slider && overlayDiv && handle){
+    const beforeImg = document.getElementById('imgBeforeBase');
+    const afterOverlayImg = document.querySelector('.compare-overlay img');
+    // imagens já definidas no html com alta qualidade (antes/depois realistas)
+    function handleMove(clientX) {
+      const rect = slider.getBoundingClientRect();
+      let x = (clientX - rect.left) / rect.width;
+      x = Math.min(Math.max(x, 0), 1);
+      const newWidth = x * 100;
+      overlayDiv.style.width = newWidth + '%';
+      handle.style.left = `calc(${newWidth}% - 21px)`;
+    }
+    const onMouseMove = (e) => handleMove(e.clientX);
+    const onMouseUp = () => {
+      document.removeEventListener('mousemove', onMouseMove);
+      document.removeEventListener('mouseup', onMouseUp);
+    };
+    handle.addEventListener('mousedown', (e) => {
+      e.preventDefault();
+      document.addEventListener('mousemove', onMouseMove);
+      document.addEventListener('mouseup', onMouseUp);
+    });
+    // mobile touch
+    handle.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      const onTouchMove = (ev) => {
+        const touch = ev.touches[0];
+        handleMove(touch.clientX);
+      };
+      const onTouchEnd = () => {
+        document.removeEventListener('touchmove', onTouchMove);
+        document.removeEventListener('touchend', onTouchEnd);
+      };
+      document.addEventListener('touchmove', onTouchMove);
+      document.addEventListener('touchend', onTouchEnd);
+    });
+  }
+
+  // Swiper depoimentos
+  const swiper = new Swiper('.mySwiper', {
+    slidesPerView: 1,
+    spaceBetween: 24,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    breakpoints: {
+      768: { slidesPerView: 2 },
+      1024: { slidesPerView: 3 }
+    },
+    loop: true,
+    autoplay: { delay: 4000, disableOnInteraction: false }
+  });
+  
+  // Observe também cards de serviço, depoimentos, etc
+  document.querySelectorAll('.service-card').forEach(card => observer.observe(card));
+  document.querySelectorAll('.testimonial-card').forEach(t => observer.observe(t));
+
+  // ============================================
+// HEADER INTERACTIONS
+// ============================================
+
+document.addEventListener('DOMContentLoaded', function() {
+  const header = document.querySelector('.site-header');
+  const menuToggle = document.querySelector('.menu-toggle');
+  const siteNav = document.querySelector('.site-nav');
+  const navLinks = document.querySelectorAll('.nav-link, .nav-cta, .nav-phone');
+  const scrollIndicator = document.querySelector('.scroll-indicator');
+  
+  // Criar overlay para mobile
+  const overlay = document.createElement('div');
+  overlay.className = 'menu-overlay';
+  document.body.appendChild(overlay);
+  
+  // Toggle menu mobile
+  function toggleMenu() {
+    const isActive = siteNav.classList.contains('active');
+    
+    if (!isActive) {
+      // Abrir menu
+      siteNav.classList.add('active');
+      menuToggle.classList.add('active');
+      menuToggle.setAttribute('aria-expanded', 'true');
+      overlay.classList.add('active');
+      document.body.style.overflow = 'hidden';
+    } else {
+      // Fechar menu
+      closeMenu();
+    }
+  }
+  
+  function closeMenu() {
+    siteNav.classList.remove('active');
+    menuToggle.classList.remove('active');
+    menuToggle.setAttribute('aria-expanded', 'false');
+    overlay.classList.remove('active');
+    document.body.style.overflow = '';
+  }
+  
+  menuToggle.addEventListener('click', toggleMenu);
+  overlay.addEventListener('click', closeMenu);
+  
+  // Fechar menu ao clicar em links
+  navLinks.forEach(link => {
+    link.addEventListener('click', () => {
+      if (window.innerWidth <= 768) {
+        closeMenu();
+      }
+    });
+  });
+  
+  // Fechar menu com tecla ESC
+  document.addEventListener('keydown', (e) => {
+    if (e.key === 'Escape' && siteNav.classList.contains('active')) {
+      closeMenu();
+    }
+  });
+  
+  // Header scroll effect
+  function updateHeaderOnScroll() {
+    const scrollY = window.scrollY;
+    
+    // Adicionar classe quando houver scroll
+    if (scrollY > 50) {
+      header.classList.add('scrolled');
+    } else {
+      header.classList.remove('scrolled');
+    }
+    
+    // Atualizar indicador de scroll
+    if (scrollIndicator) {
+      const docHeight = document.documentElement.scrollHeight - window.innerHeight;
+      const scrollPercent = (scrollY / docHeight) * 100;
+      scrollIndicator.style.width = Math.min(scrollPercent, 100) + '%';
+    }
+  }
+  
+  // Throttle para performance
+  let ticking = false;
+  window.addEventListener('scroll', () => {
+    if (!ticking) {
+      window.requestAnimationFrame(() => {
+        updateHeaderOnScroll();
+        ticking = false;
+      });
+      ticking = true;
+    }
+  });
+  
+  // Verificar estado inicial
+  updateHeaderOnScroll();
+  
+  // Fechar menu em resize
+  let lastWidth = window.innerWidth;
+  window.addEventListener('resize', () => {
+    if (window.innerWidth !== lastWidth) {
+      lastWidth = window.innerWidth;
+      if (window.innerWidth > 768 && siteNav.classList.contains('active')) {
+        closeMenu();
+      }
+    }
+  });
+});
+</script>
+</body>
+</html>
