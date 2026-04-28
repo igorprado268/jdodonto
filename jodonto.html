@@ -1,0 +1,747 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes, viewport-fit=cover">
+  <title>Dra. Sofia Mendes | Odontologia Premium & Inovadora</title>
+  <!-- Google Fonts + Font Awesome -->
+  <link href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,300;14..32,400;14..32,500;14..32,600;14..32,700;14..32,800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <!-- Swiper JS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.css" />
+  <style>
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: #ffffff;
+      color: #1A2C3E;
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+    }
+
+    /* ========== CABEÇALHO PREMIUM + RESPONSIVO ========== */
+    .main-header {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      z-index: 1000;
+      padding: 16px 0;
+      transition: all 0.4s cubic-bezier(0.2, 0.9, 0.4, 1.1);
+      background: transparent;
+    }
+    
+    .main-header.scrolled {
+      background: rgba(255, 255, 255, 0.98);
+      backdrop-filter: blur(16px);
+      box-shadow: 0 8px 32px rgba(0, 0, 0, 0.08);
+      padding: 10px 0;
+      border-bottom: 1px solid rgba(11, 79, 108, 0.1);
+    }
+    
+    .header-container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 20px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+    
+    .logo-area {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .logo-icon {
+      background: linear-gradient(135deg, #0B4F6C, #0C6E8C);
+      width: 42px;
+      height: 42px;
+      border-radius: 14px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.4rem;
+      color: white;
+      box-shadow: 0 6px 14px rgba(11, 79, 108, 0.25);
+    }
+    
+    .logo-text {
+      font-size: 1.3rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      background: linear-gradient(115deg, #0B4F6C 20%, #1A8DA8 80%);
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+    }
+    
+    .logo-text span {
+      font-weight: 500;
+      font-size: 0.7rem;
+      display: inline-block;
+      background: #F0F7FA;
+      padding: 2px 6px;
+      border-radius: 40px;
+      color: #0B4F6C;
+      margin-left: 6px;
+      vertical-align: middle;
+    }
+    
+    .nav-menu {
+      display: flex;
+      gap: 28px;
+      align-items: center;
+    }
+    
+    .nav-menu a {
+      text-decoration: none;
+      font-weight: 600;
+      color: #1F4E62;
+      transition: 0.2s;
+      font-size: 0.95rem;
+    }
+    
+    .nav-menu a:hover {
+      color: #0C6E8C;
+    }
+    
+    .nav-cta {
+      background: linear-gradient(115deg, #0B4F6C, #0E6D8C);
+      color: white !important;
+      padding: 8px 22px;
+      border-radius: 100px;
+      transition: all 0.3s;
+      box-shadow: 0 6px 14px rgba(11, 79, 108, 0.2);
+    }
+    
+    .nav-cta:hover {
+      transform: translateY(-2px);
+      background: #0C6E8C;
+    }
+    
+    .mobile-toggle {
+      display: none;
+      background: rgba(11, 79, 108, 0.1);
+      border: none;
+      font-size: 1.6rem;
+      padding: 8px 14px;
+      border-radius: 40px;
+      color: #0B4F6C;
+      cursor: pointer;
+      backdrop-filter: blur(4px);
+    }
+    
+    /* Responsivo Tablets e Mobile */
+    @media (max-width: 900px) {
+      .nav-menu {
+        position: fixed;
+        top: 70px;
+        right: -100%;
+        background: rgba(255, 255, 255, 0.98);
+        backdrop-filter: blur(24px);
+        flex-direction: column;
+        width: 75%;
+        max-width: 280px;
+        padding: 40px 24px;
+        border-radius: 28px 0 0 28px;
+        box-shadow: -8px 20px 35px rgba(0,0,0,0.12);
+        transition: right 0.35s ease;
+        gap: 28px;
+        border-left: 1px solid rgba(0,0,0,0.05);
+      }
+      .nav-menu.active {
+        right: 0;
+      }
+      .mobile-toggle {
+        display: block;
+      }
+      .header-container {
+        padding: 0 16px;
+      }
+      .logo-text {
+        font-size: 1.1rem;
+      }
+      .logo-icon {
+        width: 36px;
+        height: 36px;
+        font-size: 1.2rem;
+      }
+    }
+    
+    @media (max-width: 480px) {
+      .logo-text span {
+        display: none;
+      }
+      .nav-cta {
+        padding: 8px 18px;
+        font-size: 0.85rem;
+      }
+    }
+    
+    /* Hero responsivo */
+    .hero {
+      margin-top: 0;
+      padding-top: 100px;
+      position: relative;
+      overflow: hidden;
+      background: radial-gradient(circle at 80% 20%, rgba(12, 110, 140, 0.08), rgba(2, 48, 71, 0.02)), 
+                  linear-gradient(125deg, #EFFAFE 0%, #D9F0F5 100%);
+    }
+    
+    .hero-grid {
+      display: flex;
+      align-items: center;
+      gap: 40px;
+      flex-wrap: wrap;
+    }
+    
+    .hero-left {
+      flex: 1.2;
+    }
+    
+    .hero-left h1 {
+      font-size: clamp(2rem, 6vw, 3.5rem);
+      font-weight: 800;
+      line-height: 1.2;
+      letter-spacing: -1px;
+      color: #153e4f;
+    }
+    
+    .hero-left p {
+      font-size: clamp(0.95rem, 3.5vw, 1.2rem);
+      margin: 20px 0 28px;
+      color: #2a4b5c;
+    }
+    
+    .btn-primary {
+      display: inline-block;
+      background: #0B4F6C;
+      color: white;
+      font-weight: 700;
+      padding: 14px 28px;
+      border-radius: 60px;
+      text-decoration: none;
+      transition: all 0.3s;
+      box-shadow: 0 8px 20px rgba(11, 79, 108, 0.25);
+      font-size: clamp(0.9rem, 3vw, 1.1rem);
+      text-align: center;
+    }
+    
+    .floating-tags {
+      display: flex;
+      gap: 12px;
+      flex-wrap: wrap;
+      margin-top: 40px;
+    }
+    
+    .floating-tag {
+      background: rgba(255,255,240,0.9);
+      backdrop-filter: blur(8px);
+      padding: 6px 16px;
+      border-radius: 100px;
+      font-weight: 600;
+      font-size: 0.8rem;
+      color: #0B4F6C;
+    }
+    
+    /* Imagem Dentista Responsiva - sem balões */
+    .doctor-image-wrapper {
+      position: relative;
+      max-width: 100%;
+      margin: 0 auto;
+    }
+    
+    .doctor-premium-img {
+      width: 100%;
+      max-width: 450px;
+      height: auto;
+      border-radius: 28px;
+      object-fit: cover;
+      display: block;
+      margin: 0 auto;
+      box-shadow: 0 35px 55px -20px rgba(0,0,0,0.25);
+    }
+    
+    /* Glow atrás da imagem (efeito de profundidade) */
+    .doctor-glow {
+      position: absolute;
+      width: 100%;
+      height: 100%;
+      background: radial-gradient(circle, rgba(12,110,140,0.2) 0%, rgba(0,0,0,0) 70%);
+      top: 10%;
+      left: 10%;
+      z-index: -1;
+      border-radius: 60%;
+      filter: blur(40px);
+    }
+    
+    @media (max-width: 768px) {
+      .hero {
+        padding-top: 90px;
+        padding-bottom: 50px;
+      }
+      .hero-grid {
+        flex-direction: column;
+        text-align: center;
+      }
+      .hero-left p {
+        max-width: 100%;
+      }
+      .floating-tags {
+        justify-content: center;
+      }
+      .doctor-premium-img {
+        max-width: 320px;
+      }
+    }
+    
+    /* Container responsivo */
+    .container {
+      max-width: 1300px;
+      margin: 0 auto;
+      padding: 0 20px;
+    }
+    
+    /* Cards serviços responsivos */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 24px;
+    }
+    
+    .service-card {
+      background: white;
+      border-radius: 24px;
+      padding: 24px 16px;
+      text-align: center;
+      transition: all 0.3s;
+      box-shadow: 0 12px 28px -8px rgba(0, 0, 0, 0.05);
+    }
+    
+    .service-card:hover {
+      transform: translateY(-8px);
+      box-shadow: 0 30px 40px -18px rgba(11, 79, 108, 0.2);
+    }
+    
+    .service-icon {
+      font-size: 2.5rem;
+      color: #0B4F6C;
+      margin-bottom: 16px;
+    }
+    
+    /* Antes/Depois slider responsivo */
+    .compare-slider {
+      max-width: 100%;
+      width: 100%;
+    }
+    
+    /* Depoimentos responsivos */
+    .testimonial-card {
+      background: white;
+      border-radius: 24px;
+      padding: 24px;
+      margin: 15px;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.08);
+    }
+    
+    /* Sobre responsivo */
+    .about-flex {
+      display: flex;
+      flex-wrap: wrap;
+      align-items: center;
+      gap: 40px;
+    }
+    
+    .about-image img {
+      width: 220px;
+      height: 220px;
+      object-fit: cover;
+      border-radius: 32px;
+      box-shadow: 0 20px 30px -12px rgba(0,0,0,0.15);
+    }
+    
+    @media (max-width: 768px) {
+      .container {
+        padding: 0 16px;
+      }
+      .services-grid {
+        grid-template-columns: repeat(auto-fit, minmax(160px, 1fr));
+        gap: 16px;
+      }
+      .service-card h3 {
+        font-size: 1.1rem;
+      }
+      .about-flex {
+        flex-direction: column;
+        text-align: center;
+      }
+      .btn-primary {
+        width: 100%;
+        text-align: center;
+      }
+    }
+    
+    /* glass-card responsivo */
+    .glass-card {
+      background: rgba(255, 255, 255, 0.75);
+      backdrop-filter: blur(12px);
+      border-radius: 28px;
+      padding: 24px 16px;
+      display: flex;
+      justify-content: space-around;
+      flex-wrap: wrap;
+      gap: 20px;
+    }
+    
+    .glass-card div {
+      text-align: center;
+      flex: 1;
+      min-width: 120px;
+    }
+    
+    /* CTA final */
+    .cta-final {
+      padding: 60px 20px;
+      text-align: center;
+      border-radius: 40px 40px 0 0;
+    }
+    
+    .cta-final h2 {
+      font-size: clamp(1.6rem, 5vw, 2.6rem);
+    }
+    
+    footer {
+      text-align: center;
+      padding: 24px 16px;
+      font-size: 0.85rem;
+      background: #0A2E3F;
+      color: #cddfe6;
+    }
+    
+    .fade-up {
+      opacity: 0;
+      transform: translateY(30px);
+      transition: opacity 0.7s, transform 0.7s;
+    }
+    .fade-up.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    
+    .hero-wave {
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      width: 100%;
+      z-index: 2;
+    }
+    
+    /* Animação sutil da imagem */
+    .floating-doctor {
+      animation: gentleFloat 5s ease-in-out infinite;
+    }
+    
+    @keyframes gentleFloat {
+      0% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+      100% { transform: translateY(0px); }
+    }
+  </style>
+</head>
+<body>
+
+<!-- CABEÇALHO PREMIUM RESPONSIVO -->
+<header class="main-header" id="mainHeader">
+  <div class="header-container">
+    <div class="logo-area">
+      <div class="logo-icon">
+        <i class="fas fa-tooth"></i>
+      </div>
+      <div class="logo-text">
+        Dra. Sofia Mendes <span>Odonto Premium</span>
+      </div>
+    </div>
+    <button class="mobile-toggle" id="menuToggle">
+      <i class="fas fa-bars"></i>
+    </button>
+    <nav class="nav-menu" id="navMenu">
+      <a href="#home">Início</a>
+      <a href="#servicos">Tratamentos</a>
+      <a href="#depoimentos">Depoimentos</a>
+      <a href="#sobre">Sobre</a>
+      <a href="#agendamento" class="nav-cta">Agendar Avaliação <i class="fas fa-calendar-check"></i></a>
+    </nav>
+  </div>
+</header>
+
+<!-- HERO SECTION - SEM OS BALÕES -->
+<section class="hero" id="home">
+  <div class="container">
+    <div class="hero-grid">
+      <div class="hero-left">
+        <div style="margin-bottom: 20px;">
+          <span style="background: rgba(11,79,108,0.1); padding: 4px 14px; border-radius: 40px; font-size: 0.75rem; font-weight: 600; color: #0B4F6C;">✨ Excelência em odontologia estética</span>
+        </div>
+        <h1>Conquiste o sorriso que você <span style="color:#0C6E8C;">sempre sonhou</span></h1>
+        <p>Atendimento odontológico moderno, seguro e com resultados naturais. Tecnologia de ponta e equipe humanizada.</p>
+        <a href="#agendamento" class="btn-primary">Agendar Avaliação <i class="fas fa-arrow-right" style="margin-left: 8px;"></i></a>
+        <div class="floating-tags">
+          <div class="floating-tag"><i class="fas fa-tooth"></i> Implantes Dentários</div>
+          <div class="floating-tag"><i class="fas fa-smile"></i> Ortodontia</div>
+          <div class="floating-tag"><i class="fas fa-star-of-life"></i> Estética Dental</div>
+        </div>
+      </div>
+      <div style="flex: 1; position: relative;">
+        <div class="doctor-image-wrapper floating-doctor">
+          <img class="doctor-premium-img" src="https://images.pexels.com/photos/3845127/pexels-photo-3845127.jpeg?auto=compress&cs=tinysrgb&w=600&h=750&fit=crop" alt="Dra. Sofia Mendes - Especialista em Odontologia">
+          <div class="doctor-glow"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <svg class="hero-wave" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 120" preserveAspectRatio="none">
+    <path fill="#ffffff" d="M0,64L80,69.3C160,75,320,85,480,80C640,75,800,53,960,48C1120,43,1280,53,1360,58.7L1440,64L1440,120L1360,120C1280,120,1120,120,960,120C800,120,640,120,480,120C320,120,160,120,80,120L0,120Z"></path>
+  </svg>
+</section>
+
+<!-- PROVA DE AUTORIDADE RESPONSIVA -->
+<div class="container" style="margin-top: -30px; position: relative; z-index: 5;">
+  <div class="glass-card">
+    <div><span style="font-size: 1.8rem; font-weight: 800; color:#0B4F6C;">+2.500</span><br>Pacientes atendidos</div>
+    <div><span style="font-size: 1.8rem; font-weight: 800; color:#0B4F6C;">12+</span><br>Anos de experiência</div>
+    <div><span style="font-size: 1.8rem; font-weight: 800; color:#0B4F6C;">98%</span><br>Avaliações positivas</div>
+    <div><i class="fas fa-star" style="color:#FFB74D;"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><i class="fas fa-star"></i><br> +150 avaliações</div>
+  </div>
+</div>
+
+<!-- SERVIÇOS -->
+<section class="container" id="servicos" style="padding: 70px 0;">
+  <div class="fade-up" style="text-align: center; margin-bottom: 48px;">
+    <h2 style="font-size: clamp(1.8rem, 5vw, 2.4rem);">Tecnologia e <span style="color:#0B4F6C;">cuidado personalizado</span></h2>
+    <p style="color:#496f7e;">Tratamentos de alta performance com resultados naturais e duradouros</p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card fade-up">
+      <div class="service-icon"><i class="fas fa-microscope"></i></div>
+      <h3>Implantes</h3>
+      <p>Fixos e estáveis, recupere função e estética.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon"><i class="fas fa-sparkles"></i></div>
+      <h3>Clareamento</h3>
+      <p>Até 8 tons mais claros em uma única sessão.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon"><i class="fas fa-braces"></i></div>
+      <h3>Aparelhos</h3>
+      <p>Ortodontia invisível e autoligado.</p>
+    </div>
+    <div class="service-card fade-up">
+      <div class="service-icon"><i class="fas fa-gem"></i></div>
+      <h3>Lentes de contato dental</h3>
+      <p>Harmonia e brilho instantâneos.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ANTES E DEPOIS RESPONSIVO -->
+<section style="background: #F4FBFD; padding: 60px 0;">
+  <div class="container">
+    <div class="fade-up" style="text-align: center; margin-bottom: 40px;">
+      <h2 style="font-size: clamp(1.6rem, 5vw, 2.2rem);">Resultados que <span style="color:#0B4F6C;">impressionam</span></h2>
+      <p>Casos reais do nosso consultório</p>
+    </div>
+    <div style="display: flex; flex-wrap: wrap; gap: 30px; align-items: center; justify-content: center;">
+      <div class="compare-slider" id="compareSlider" style="max-width: 480px; width: 100%; position: relative; border-radius: 24px; overflow: hidden; box-shadow: 0 20px 35px -12px rgba(0,0,0,0.2);">
+        <img src="https://images.pexels.com/photos/3779707/pexels-photo-3779707.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" style="width:100%; display: block;" alt="antes">
+        <div id="overlaySlider" style="position: absolute; top:0; left:0; width:50%; height:100%; overflow:hidden; border-right: 3px solid white;">
+          <img src="https://images.pexels.com/photos/3845937/pexels-photo-3845937.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop" style="width:100%; height:100%; object-fit:cover; object-position:left;" alt="depois">
+        </div>
+        <div id="sliderHandle" style="position: absolute; top:50%; left:50%; transform:translate(-50%,-50%); width: 42px; height:42px; background:white; border-radius:50%; display:flex; align-items:center; justify-content:center; cursor:pointer; box-shadow:0 2px 12px rgba(0,0,0,0.2); z-index:10;">
+          <i class="fas fa-arrows-alt-h" style="color:#0B4F6C;"></i>
+        </div>
+      </div>
+      <div style="max-width: 300px; text-align: center;">
+        <h3 style="font-size: 1.5rem;">Antes & Depois</h3>
+        <p style="margin-top: 12px;">Arraste o controle para conferir a transformação impressionante com lentes de contato dental e clareamento.</p>
+        <i class="fas fa-chart-line" style="color:#0B4F6C;"></i> <strong> 95% dos pacientes recomendam</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- DEPOIMENTOS COM SWIPER RESPONSIVO -->
+<section class="container" id="depoimentos" style="padding: 70px 0;">
+  <div class="fade-up" style="text-align: center;">
+    <h2 style="font-size: clamp(1.8rem, 5vw, 2.2rem);">O que nossos pacientes <span style="color:#0B4F6C;">dizem</span></h2>
+    <p style="margin-bottom: 40px;">Histórias reais de confiança e renovação</p>
+  </div>
+  <div class="swiper mySwiper">
+    <div class="swiper-wrapper">
+      <div class="swiper-slide">
+        <div class="testimonial-card">
+          <i class="fas fa-quote-left" style="color:#0B4F6C; opacity:0.5; font-size:1.8rem;"></i>
+          <p style="margin-top: 12px;">"Minha autoestima voltou depois do tratamento ortodôntico e clareamento. Atendimento impecável! A imagem de autoridade da doutora me passou segurança imensa."</p>
+          <div style="display:flex; align-items:center; margin-top:20px;">
+            <img src="https://randomuser.me/api/portraits/women/33.jpg" style="width:48px; height:48px; border-radius:50%; object-fit:cover; margin-right:12px;">
+            <div><strong>Camila L.</strong><br><i class="fas fa-star" style="color:gold;"></i> 5 estrelas</div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="testimonial-card">
+          <i class="fas fa-quote-left" style="color:#0B4F6C; opacity:0.5; font-size:1.8rem;"></i>
+          <p style="margin-top: 12px;">"Fiz implantes e lentes de contato, ninguém acredita que não são meus dentes naturais. Doutora sensacional, profissionalismo e resultado surreal."</p>
+          <div style="display:flex; align-items:center; margin-top:20px;">
+            <img src="https://randomuser.me/api/portraits/men/45.jpg" style="width:48px; height:48px; border-radius:50%; margin-right:12px;">
+            <div><strong>Rafael M.</strong><br><span>⭐⭐⭐⭐⭐</span></div>
+          </div>
+        </div>
+      </div>
+      <div class="swiper-slide">
+        <div class="testimonial-card">
+          <i class="fas fa-quote-left" style="color:#0B4F6C; opacity:0.5; font-size:1.8rem;"></i>
+          <p style="margin-top: 12px;">"Dra. Sofia é referência em estética dental. Fiquei impressionado com a tecnologia e o cuidado em cada etapa. Recomendo de olhos fechados!"</p>
+          <div style="display:flex; align-items:center; margin-top:20px;">
+            <img src="https://randomuser.me/api/portraits/women/52.jpg" style="width:48px; height:48px; border-radius:50%; margin-right:12px;">
+            <div><strong>Juliana R.</strong><br><i class="fas fa-thumbs-up" style="color:#0B4F6C;"></i> Recomendo</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="swiper-pagination" style="margin-top:20px; position:relative;"></div>
+  </div>
+</section>
+
+<!-- SOBRE RESPONSIVO -->
+<section id="sobre" style="background: #F9FCFE; padding: 60px 0;">
+  <div class="container">
+    <div class="about-flex">
+      <div class="about-image" style="text-align: center;">
+        <img src="https://images.pexels.com/photos/3845127/pexels-photo-3845127.jpeg?auto=compress&cs=tinysrgb&w=300&h=300&fit=crop" alt="Dra. Sofia Mendes">
+        <h3 style="margin-top: 16px;">Dra. Sofia Mendes</h3>
+        <p>CRO-SP 28456 | Especialista em Harmonização Orofacial</p>
+      </div>
+      <div style="flex:2;">
+        <h2 style="font-size: clamp(1.5rem, 4vw, 2rem);">Excelência técnica e <span style="color:#0B4F6C;">empatia</span></h2>
+        <p style="margin-top: 20px; line-height: 1.5;">Mestre em Dentística Restauradora pela USP, especialista em harmonização orofacial e implantes. Mais de 12 anos transformando sorrisos com tecnologia digital de ponta (CAD/CAM, planejamento 3D). Acredito que um sorriso saudável impacta diretamente na confiança e qualidade de vida. Cada paciente recebe um plano exclusivo, minimamente invasivo e com resultados previsíveis. <strong>+2.500 pacientes</strong> confiam na minha experiência para devolver o brilho no olhar.</p>
+        <div style="display: flex; flex-wrap: wrap; gap: 24px; margin-top: 28px;">
+          <div><i class="fas fa-certificate" style="color:#0B4F6C;"></i> Especialista em Lentes de Contato</div>
+          <div><i class="fas fa-microscope" style="color:#0B4F6C;"></i> Invisalign Diamond Provider</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL RESPONSIVO -->
+<section id="agendamento" class="cta-final" style="background: linear-gradient(115deg, #0B4F6C, #127c9c); color: white;">
+  <div class="container fade-up">
+    <h2>Agende sua avaliação e transforme seu sorriso hoje</h2>
+    <p style="margin: 20px auto; font-size: 1rem; max-width: 500px;">Consulta inicial com planejamento digital e diagnóstico completo.</p>
+    <a href="#" class="btn-primary" style="background: white; color:#0B4F6C; display: inline-block; margin-top: 8px; box-shadow: 0 12px 20px rgba(0,0,0,0.15);">Quero meu sorriso dos sonhos →</a>
+    <p style="margin-top: 30px;"><i class="fas fa-phone-alt"></i> (11) 98765-4321 | contato@smilelab.com.br</p>
+  </div>
+</section>
+
+<footer>
+  <p>© 2025 Dra. Sofia Mendes Odontologia Premium – Cuidado que transforma vidas.</p>
+</footer>
+
+<script src="https://cdn.jsdelivr.net/npm/swiper@11/swiper-bundle.min.js"></script>
+<script>
+  // Header scroll effect
+  const header = document.getElementById('mainHeader');
+  window.addEventListener('scroll', () => {
+    if (window.scrollY > 30) header.classList.add('scrolled');
+    else header.classList.remove('scrolled');
+  });
+  
+  // Mobile menu toggle
+  const menuToggle = document.getElementById('menuToggle');
+  const navMenu = document.getElementById('navMenu');
+  menuToggle.addEventListener('click', () => {
+    navMenu.classList.toggle('active');
+    const icon = menuToggle.querySelector('i');
+    icon.classList.toggle('fa-bars');
+    icon.classList.toggle('fa-times');
+  });
+  document.querySelectorAll('.nav-menu a').forEach(link => {
+    link.addEventListener('click', () => {
+      navMenu.classList.remove('active');
+      const icon = menuToggle.querySelector('i');
+      icon.classList.add('fa-bars');
+      icon.classList.remove('fa-times');
+    });
+  });
+
+  // Scroll animations
+  const faders = document.querySelectorAll('.fade-up');
+  const observer = new IntersectionObserver((entries) => {
+    entries.forEach(entry => { 
+      if(entry.isIntersecting) { 
+        entry.target.classList.add('appear'); 
+        observer.unobserve(entry.target); 
+      } 
+    });
+  }, { threshold: 0.1 });
+  faders.forEach(el => observer.observe(el));
+  document.querySelectorAll('.service-card').forEach(card => observer.observe(card));
+
+  // Before/after slider responsivo (touch + mouse)
+  const slider = document.getElementById('compareSlider');
+  const overlayDiv = document.getElementById('overlaySlider');
+  const handleDiv = document.getElementById('sliderHandle');
+  if(slider && overlayDiv && handleDiv) {
+    const handleMove = (clientX) => {
+      const rect = slider.getBoundingClientRect();
+      let x = (clientX - rect.left) / rect.width;
+      x = Math.min(Math.max(x, 0), 1);
+      overlayDiv.style.width = (x * 100) + '%';
+      handleDiv.style.left = `calc(${x * 100}% - 21px)`;
+    };
+    const onMouseMove = (e) => handleMove(e.clientX);
+    const onMouseUp = () => { 
+      document.removeEventListener('mousemove', onMouseMove); 
+      document.removeEventListener('mouseup', onMouseUp); 
+    };
+    handleDiv.addEventListener('mousedown', (e) => { 
+      e.preventDefault(); 
+      document.addEventListener('mousemove', onMouseMove); 
+      document.addEventListener('mouseup', onMouseUp); 
+    });
+    handleDiv.addEventListener('touchstart', (e) => {
+      e.preventDefault();
+      const onTouchMove = (ev) => handleMove(ev.touches[0].clientX);
+      const onTouchEnd = () => { 
+        document.removeEventListener('touchmove', onTouchMove); 
+        document.removeEventListener('touchend', onTouchEnd); 
+      };
+      document.addEventListener('touchmove', onTouchMove);
+      document.addEventListener('touchend', onTouchEnd);
+    });
+  }
+
+  // Swiper depoimentos responsivo
+  new Swiper('.mySwiper', {
+    slidesPerView: 1,
+    spaceBetween: 20,
+    pagination: { el: '.swiper-pagination', clickable: true },
+    breakpoints: { 
+      640: { slidesPerView: 1.2, spaceBetween: 20 }, 
+      768: { slidesPerView: 2, spaceBetween: 24 }, 
+      1024: { slidesPerView: 3, spaceBetween: 30 } 
+    },
+    loop: true,
+    autoplay: { delay: 4500, disableOnInteraction: false }
+  });
+</script>
+</body>
+</html>
